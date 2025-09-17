@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copilot Chat Saver</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💾 Copilot Chat Saver</h1>
+            <p class="subtitle">Save your chat to markdown</p>
+        </div>
+
+        <div class="status-section">
+            <div id="status-indicator" class="status-indicator">
+                <span id="status-icon">🔍</span>
+                <span id="status-text">Checking for chat...</span>
+            </div>
+        </div>
+
+        <div class="options-section">
+            <h3>Export Options</h3>
+            
+            <div class="option-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="includeTimestamps" checked>
+                    <span class="checkmark"></span>
+                    Include timestamps
+                </label>
+            </div>
+
+            <div class="option-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="includeMetadata" checked>
+                    <span class="checkmark"></span>
+                    Include chat metadata
+                </label>
+            </div>
+
+            <div class="option-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="formatCodeBlocks" checked>
+                    <span class="checkmark"></span>
+                    Format code blocks
+                </label>
+            </div>
+        </div>
+
+        <div class="filename-section">
+            <h3>File Name</h3>
+            <input type="text" id="filename" placeholder="copilot-chat-export">
+            <small>(.md extension will be added automatically)</small>
+        </div>
+
+        <div class="actions-section">
+            <button id="extractBtn" class="primary-btn" disabled>
+                <span class="btn-icon">📄</span>
+                Extract Chat
+            </button>
+            
+            <button id="downloadBtn" class="secondary-btn" disabled>
+                <span class="btn-icon">💾</span>
+                Download Markdown
+            </button>
+        </div>
+
+        <div class="info-section" id="chatInfo" style="display: none;">
+            <h3>Chat Information</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Title:</strong>
+                    <span id="chatTitle">-</span>
+                </div>
+                <div class="info-item">
+                    <strong>Messages:</strong>
+                    <span id="messageCount">-</span>
+                </div>
+                <div class="info-item">
+                    <strong>URL:</strong>
+                    <span id="chatUrl">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="links">
+                <a href="#" id="helpLink">Help</a>
+                <a href="#" id="settingsLink">Settings</a>
+            </div>
+            <div class="version">v0.0.1</div>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing chat...</p>
+    </div>
+
+    <!-- Success notification -->
+    <div id="successNotification" class="notification success" style="display: none;">
+        <span class="notification-icon">✅</span>
+        <span class="notification-text">Chat saved successfully!</span>
+    </div>
+
+    <!-- Error notification -->
+    <div id="errorNotification" class="notification error" style="display: none;">
+        <span class="notification-icon">❌</span>
+        <span class="notification-text" id="errorText">An error occurred</span>
+    </div>
+
+    <script src="markdown-converter.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>
