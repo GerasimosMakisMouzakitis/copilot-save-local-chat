@@ -5,19 +5,92 @@
 [![GitHub issues](https://img.shields.io/github/issues/GerasimosMakisMouzakitis/copilot-save-local-chat)](https://github.com/GerasimosMakisMouzakitis/copilot-save-local-chat/issues)
 
 **Created by**: Gerasimos Makis Mouzakitis  
-**Version**: 0.0.1 | **Created**: 2025-09-17 | **Updated**: 2025-09-17
+**Version**: 0.0.1 | **Created**: 2025-09-17 | **Updated**: 2025-10-10
 
-A browser extension for Microsoft Edge and Chrome that allows you to save your Microsoft Copilot chat conversations as markdown files.
+A comprehensive toolkit for saving Microsoft Copilot chat conversations as markdown files. Choose from multiple interfaces: browser extension, web UI, CLI tool, or automated browser extraction.
 
 ## 🚀 Features
 
-- **Easy Export**: One-click extraction and download of your Copilot conversations
-- **Markdown Format**: Clean, readable markdown output with proper formatting
-- **Code Block Support**: Preserves code blocks with syntax highlighting information
+- **Multiple Interfaces**: Browser extension, web UI, CLI tool, and automation
+- **Easy Export**: One-click extraction and download of conversations
+- **Markdown Format**: Clean, readable output with proper formatting
+- **Code Block Support**: Preserves syntax highlighting information
 - **Timestamp Preservation**: Optional timestamps for each message
-- **Multiple Platforms**: Works with Microsoft Copilot, Bing Chat, and Edge Sidebar Copilot
-- **Customizable Options**: Choose what to include in your exports
-- **Auto-filename Generation**: Smart filename generation based on chat content
+- **Platform Support**: Works with Microsoft Copilot, Bing Chat, and Edge Sidebar
+- **Customizable Options**: Choose what to include in exports
+- **Batch Processing**: CLI and automation tools for multiple chats
+- **Open Source**: Full source code available for inspection and contribution
+
+## 🎯 Choose Your Tool
+
+| Tool | Best For | Difficulty | Installation |
+|------|----------|------------|--------------|
+| **[Browser Extension](docs/user/README.md#browser-extension-recommended)** | Real-time chat saving | ⭐ Easy | Load in Chrome/Edge |
+| **[Web UI](docs/user/README.md#web-ui)** | Converting exported files | ⭐ Easy | Open in browser |
+| **[CLI Tool](docs/user/README.md#cli-tool)** | Batch processing | ⭐⭐ Medium | Node.js required |
+| **[Browser Automation](docs/user/README.md#browser-automation)** | Automated URL extraction | ⭐⭐⭐ Advanced | Technical setup |
+
+## 🛠️ Project Structure
+
+```
+copilot-save-local-chat/
+├── 📁 src/                          # Source code
+│   ├── 🔌 browser-extension/        # Chrome/Edge extension
+│   ├── 💻 cli/                      # Command-line tool
+│   ├── 🌐 web-ui/                   # Web interface
+│   ├── 🤖 browser-automation/       # Puppeteer automation
+│   └── 🔧 shared/                   # Common utilities
+├── 📁 docs/                         # Documentation
+│   ├── 👥 user/                     # User guides
+│   └── 🔨 development/              # Developer docs
+├── 📁 downloads/                    # Sample downloads
+├── 📄 README.md                     # This file
+├── 📜 LICENSE                       # MIT License
+└── 🤝 CONTRIBUTING.md               # Moved to docs/development/
+```
+
+## 🚀 Quick Start
+
+### 1. Browser Extension (Recommended)
+```bash
+# Clone the repository
+git clone https://github.com/GerasimosMakisMouzakitis/copilot-save-local-chat.git
+
+# Load extension in Chrome/Edge
+# 1. Go to chrome://extensions/ or edge://extensions/
+# 2. Enable "Developer mode"
+# 3. Click "Load unpacked"
+# 4. Select the src/browser-extension/ folder
+```
+
+### 2. Web UI
+```bash
+# Serve the web interface
+cd src/web-ui
+python -m http.server 8000
+# Open http://localhost:8000 in your browser
+```
+
+### 3. CLI Tool
+```bash
+# Install dependencies and run
+cd src/cli
+npm install
+node index.js --help
+```
+
+### 4. Browser Automation
+```bash
+# Install Puppeteer and dependencies
+cd src/browser-automation
+npm install
+```
+
+## 📖 Documentation
+
+- **[📘 User Guide](docs/user/README.md)** - Complete user documentation
+- **[🔧 Development Guide](docs/development/README.md)** - Developer documentation
+- **[🚀 Quick Install](docs/user/INSTALL.md)** - Installation instructions
 
 ## 🛠️ Installation
 
@@ -29,28 +102,13 @@ A browser extension for Microsoft Edge and Chrome that allows you to save your M
    cd copilot-save-local-chat
    ```
 
-2. **Load the Extension in Edge/Chrome**:
-   - Open Microsoft Edge or Chrome
-   - Navigate to `edge://extensions/` (Edge) or `chrome://extensions/` (Chrome)
-   - Enable "Developer mode" (toggle in the top-right corner)
-   - Click "Load unpacked"
-   - Select the `copilot-save-local-chat` folder
+2. **Choose Your Component**:
+   - **Browser Extension**: Load `src/browser-extension/` in browser
+   - **CLI Tool**: `cd src/cli && npm install`
+   - **Web UI**: Serve `src/web-ui/` with any web server
+   - **Automation**: `cd src/browser-automation && npm install`
 
-3. **Verify Installation**:
-   - You should see the "Copilot Chat Saver" extension in your extensions list
-   - The extension icon will appear in your browser toolbar
-
-### Create Extension Icons (Optional)
-
-The extension includes placeholder icons. To create proper icons:
-
-1. Create PNG files in the `icons/` directory:
-   - `icon-16.png` (16x16 pixels)
-   - `icon-32.png` (32x32 pixels)
-   - `icon-48.png` (48x48 pixels)
-   - `icon-128.png` (128x128 pixels)
-
-2. Reload the extension to see the new icons
+See the [detailed installation guide](docs/user/README.md) for step-by-step instructions.
 
 ## 📖 Usage
 
@@ -121,28 +179,34 @@ def example_function():
 ### File Structure
 
 ```
-copilot-save-local-chat/
-├── manifest.json           # Extension manifest
-├── content.js             # Content script for chat extraction
-├── popup.html            # Extension popup interface
-├── popup.css             # Popup styling
-├── popup.js              # Popup functionality
-├── background.js         # Service worker
-├── markdown-converter.js # Chat-to-markdown conversion
-├── icons/               # Extension icons
-│   ├── icon-16.png
-│   ├── icon-32.png
-│   ├── icon-48.png
-│   └── icon-128.png
-└── README.md           # This file
+src/
+├── browser-extension/           # Browser extension files
+│   ├── manifest.json           # Extension configuration
+│   ├── content.js             # Chat extraction logic
+│   ├── popup.html/css/js      # User interface
+│   ├── background.js          # Service worker
+│   └── icons/                 # Extension icons
+├── cli/                       # Command-line tool
+│   ├── index.js              # CLI application
+│   └── package.json          # Dependencies
+├── web-ui/                    # Web interface
+│   ├── index.html            # Main interface
+│   ├── app.js                # Application logic
+│   └── styles.css            # Styling
+├── browser-automation/        # Puppeteer automation
+│   ├── index.js              # Automation engine
+│   └── package.json          # Dependencies
+└── shared/                    # Common utilities
+    ├── markdown-converter.js  # Core conversion logic
+    └── test.js               # Testing utilities
 ```
 
 ### How It Works
 
-1. **Detection**: Content script identifies chat message elements on supported pages
+1. **Detection**: Content scripts identify chat message elements on supported pages
 2. **Extraction**: Parses message structure, roles, timestamps, and code blocks
 3. **Conversion**: Transforms extracted data into well-formatted markdown
-4. **Download**: Creates and downloads the markdown file via the browser's download API
+4. **Download**: Creates and downloads the markdown file via browser's download API
 
 ### Browser Permissions
 
@@ -231,5 +295,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 **Version**: 0.0.1  
 **Creator**: Gerasimos Makis Mouzakitis  
 **Created**: 2025-09-17  
-**Last Updated**: 2025-09-17  
+**Last Updated**: 2025-10-10  
 **Compatibility**: Microsoft Edge 88+, Chrome 88+
+
+## 📂 Repository Structure
+See [PROJECT-OVERVIEW.md](PROJECT-OVERVIEW.md) for detailed project organization and architecture.

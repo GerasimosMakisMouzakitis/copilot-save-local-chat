@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copilot Chat Saver - Web UI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🤖 Copilot Chat Saver</h1>
+            <p class="subtitle">Save your Microsoft Copilot conversations as markdown files</p>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-section">
+                <h2>Upload Chat Data</h2>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <p>Drag & drop your chat files here or click to browse</p>
+                        <p class="upload-hint">Supported formats: JSON, HTML</p>
+                    </div>
+                    <input type="file" id="fileInput" accept=".json,.html" multiple hidden>
+                </div>
+            </div>
+
+            <div class="url-section">
+                <h2>Or Enter Chat URL</h2>
+                <div class="url-input-group">
+                    <input type="url" id="chatUrl" placeholder="https://copilot.microsoft.com/chats/...">
+                    <button id="fetchBtn" class="btn btn-primary">Fetch Chat</button>
+                </div>
+                <p class="url-hint">Note: URL fetching requires browser automation setup</p>
+            </div>
+
+            <div class="options-section">
+                <h2>Export Options</h2>
+                <div class="options-grid">
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="includeTimestamps" checked>
+                        <span class="checkmark"></span>
+                        Include timestamps
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="includeMetadata" checked>
+                        <span class="checkmark"></span>
+                        Include metadata
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="formatCodeBlocks" checked>
+                        <span class="checkmark"></span>
+                        Format code blocks
+                    </label>
+                </div>
+            </div>
+
+            <div class="preview-section" id="previewSection" style="display: none;">
+                <h2>Preview</h2>
+                <div class="preview-content" id="previewContent">
+                    <!-- Preview will be loaded here -->
+                </div>
+                <div class="preview-actions">
+                    <button id="downloadBtn" class="btn btn-success">💾 Download Markdown</button>
+                    <button id="copyBtn" class="btn btn-secondary">📋 Copy to Clipboard</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Gerasimos Makis Mouzakitis | Version 0.0.1</p>
+        </footer>
+    </div>
+
+    <div id="notification" class="notification" style="display: none;">
+        <span class="notification-text"></span>
+    </div>
+
+    <script src="../shared/markdown-converter.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "name": "copilot-chat-saver-cli",
+  "version": "0.0.1",
+  "description": "Command-line tool for saving Microsoft Copilot chats as markdown",
+  "main": "index.js",
+  "bin": {
+    "copilot-chat-saver": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "copilot",
+    "microsoft",
+    "chat",
+    "markdown",
+    "cli",
+    "save",
+    "export"
+  ],
+  "author": "Gerasimos Makis Mouzakitis",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

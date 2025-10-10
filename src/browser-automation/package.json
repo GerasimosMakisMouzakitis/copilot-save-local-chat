@@ -1,0 +1,28 @@
+{
+  "name": "copilot-chat-automation",
+  "version": "0.0.1",
+  "description": "Browser automation for Copilot chat extraction using Puppeteer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "copilot",
+    "automation",
+    "puppeteer",
+    "chat",
+    "extraction"
+  ],
+  "author": "Gerasimos Makis Mouzakitis",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
